@@ -1,0 +1,43 @@
+<h2>Por país</h2>
+<hr>
+
+<div class="row">
+    <div class="col">
+        <form (ngSubmit)="buscar()" autocomplete="off">
+            <input type="text" name="termino" class="form-control" [(ngModel)]="termino" placeholder="Buscar país...">
+        </form>
+    </div>
+</div>
+
+<hr>
+
+<div *ngIf="hayError" class="alert alert-danger">
+    No se encontro algo con el termino {{ termino }}
+</div>
+
+<div *ngIf="!hayError" class="row">
+    <div class="col">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Bandera</th>
+                    <th>Nombre</th>
+                    <th>Poblaicón</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pais of paises; index as i">
+                    <td> {{ i }} </td>
+                    <td>
+                        <img class="small-flag" [src]=" pais.flags['png'] " alt="">
+                    </td>
+                    <td> {{ pais.name['common'] }} </td>
+                    <td> {{pais.population|number }} </td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
